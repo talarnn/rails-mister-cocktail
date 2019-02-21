@@ -1,0 +1,18 @@
+<h1><%= @cocktail.name  %></h1>
+
+<%= link_to "Back to index", cocktails_path  %>
+
+<%= simple_form_for([@cocktail, @dose]) do |f| %>
+  <%= f.input :ingredient_id, collection: Ingredient.all%>
+  <%= f.input :description %>
+  <%= f.submit  %>
+<% end %>
+
+<ul>
+  <% @cocktail.doses.each do |stuff| %>
+    <li>
+      <%=stuff.ingredient.name%>
+      <%= stuff.description%>
+    </li>
+  <% end %>
+</ul>
