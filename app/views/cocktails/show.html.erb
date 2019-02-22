@@ -1,18 +1,44 @@
-<h1><%= @cocktail.name  %></h1>
+<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR7Uc8ulPnbGHCo6QX5pEGijM30_h_v1UsL6IOD9Ib7zrEMoX4h8A);">
+  <div class="container">
+    <h1>Mister Cocktail</h1>
+    <br>
+    <p>There is <%=@cocktails.count%> cocktails and <%=@ingredient.count%> ingredients in the database</p>
+    <h5><%= link_to "Back to index", cocktails_path, class: "btn btn-gradient"%></h5>
+  </div>
+</div>
+<div class="container">
+  <div class="show-grid">
 
-<%= link_to "Back to index", cocktails_path  %>
+    <div class="show-cocktail">
+      <h1><%= @cocktail.name  %></h1>
+      <img src="<%=@cocktail.url%>" alt="fromgage" id="image_show">
+    </div>
 
-<%= simple_form_for([@cocktail, @dose]) do |f| %>
-  <%= f.input :ingredient_id, collection: Ingredient.all%>
-  <%= f.input :description %>
-  <%= f.submit  %>
-<% end %>
+    <div class="show-ingredient">
+      <br>
+      <br>
+      <h3>Ingredients needed :</h3>
+      <ul class="list-unstyled">
+      <% @cocktail.doses.each do |stuff| %>
+        <li>
+          <%=stuff.ingredient.name%> :
+          <%= stuff.description%>
+          <%= link_to "(delete)", dose_path(stuff), method: :delete %>
+        </li>
+      <% end %>
+      </ul>
+    </div>
 
-<ul>
-  <% @cocktail.doses.each do |stuff| %>
-    <li>
-      <%=stuff.ingredient.name%>
-      <%= stuff.description%>
-    </li>
-  <% end %>
-</ul>
+
+    <div class="show-form">
+    <br>
+    <br>
+    <%= simple_form_for([@cocktail, @dose]) do |f| %>
+      <%= f.input :ingredient_id, collection: Ingredient.all%>
+      <%= f.input :description %>
+      <%= f.submit%>
+    <% end %>
+    </div>
+
+  </div>
+</div>

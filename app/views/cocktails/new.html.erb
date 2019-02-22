@@ -1,7 +1,19 @@
+<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR7Uc8ulPnbGHCo6QX5pEGijM30_h_v1UsL6IOD9Ib7zrEMoX4h8A);">
+  <div class="container">
+    <h1>Mister Cocktail</h1>
+    <br>
+    <p>There is <%=@cocktails.count%> cocktails and <%=@ingredients.count%> ingredients in the database</p>
+    <h5><%= link_to "Back to index", cocktails_path, class: "btn btn-gradient"%></h5>
+  </div>
+</div>
+<br>
 <div class="container">
-  <%= simple_form_for(@cocktail) do |f| %>
-  <%= f.input :name %>
-  <%= f.input :url %>
-  <%= f.submit  %>
+  <div class="form">
+    <%= simple_form_for(@cocktail) do |f| %>
+    <%= f.input :name %>
+    <%= f.input :url %>
+    <%= f.submit %>
+  </div>
 <% end %>
+</div>
 
